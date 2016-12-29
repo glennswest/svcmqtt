@@ -6,6 +6,8 @@ mkdir /work && chown nobody /work
 
 VOLUME ["/work"]
 WORKDIR /work
+COPY mosquitto.conf /etc/mosquitto/mosquitto.conf
+COPY mosquitto.conf /etc/mosquitto/mosquitto.conf
 
 USER nobody
 
