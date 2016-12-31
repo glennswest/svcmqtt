@@ -13,5 +13,5 @@ USER nobody
 
 EXPOSE 1883
 
-ENTRYPOINT ["mosquitto"]
+ENTRYPOINT ["mosquitto","-v","-c","/etc/mosquitto/mosquitto.conf"]
 
