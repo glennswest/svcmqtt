@@ -1,0 +1,26 @@
+{
+  "name": "svcmqtt",
+  "version": "1.0.0",
+  "description": "Auto Config Multi Host Mqtt Broker",
+  "main": "svcmqtt.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glennswest/svcmqtt.git"
+  },
+  "keywords": [
+    "mqtt",
+    "borker"
+  ],
+  "author": "Glenn West",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/glennswest/svcmqtt/issues"
+  },
+  "homepage": "https://github.com/glennswest/svcmqtt#readme",
+  "dependencies": {
+    "mdns-js": "^0.5.3"
+  }
+}
