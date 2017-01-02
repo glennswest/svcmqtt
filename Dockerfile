@@ -19,6 +19,7 @@ VOLUME ["/work"]
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY mosquitto.conf /etc/mosquitto/mosquitto.conf
+COPY mosquitto-base.conf /etc/mosquitto/mosquitto-base.conf
 # Bundle app source
 COPY . /usr/src/app
 

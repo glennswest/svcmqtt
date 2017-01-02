@@ -52,6 +52,8 @@ function update_config()
         servers.forEach(function(element){
               theline = theline + element.ip + ":1883  ";
               });
+	options = {};
+        options.force = true;
         fssync.copy('/etc/mosquitto/mosquitto-base.conf','/etc/mosquitto/mosquitto.conf',options);
         fs.appendFileSync('/etc/mosquitto/mosquitto.conf','\n# Updated by svcmqtt\n');
         fs.appendFileSync('/etc/mosquitto/mosquitto.conf','connection sitecom\n');
@@ -65,6 +67,7 @@ function update_config()
 var browser = mdns.createBrowser(mdns.tcp('mqtt'));
 browser.on('ready', function onReady(){
       console.log('browser is ready');
+      restart_server();
       browser.discover();
       });
 //service up:  { addresses: [ '192.168.1.231' ],
@@ -90,6 +93,7 @@ function findIP(ipaddr){
      }
 function add_server(s)
 {
+   update_config();
    if (s.ip == myIP){
       console.log("Ignoring: Self");
       return;
@@ -99,7 +103,6 @@ function add_server(s)
        servers.push(server);
        console.log(util.inspect(s));
        console.log("Added " + s.ip);
-       update_config();
        }
 }
 browser.on('update', function(service) {
@@ -110,7 +113,6 @@ browser.on('update', function(service) {
        if (element.name == 'mqtt'){
           server.ip = ip;
           add_server(server);
-          restart_server();
           }
        });
 });
