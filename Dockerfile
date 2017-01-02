@@ -2,6 +2,8 @@
 FROM mhart/alpine-node:6
 MAINTAINER glennswest@neuralcloudcomputing.com
 
+USER root
+
 RUN sed -i -e 's/v3\.4/v3.5/g' /etc/apk/repositories \
         && apk update \
         && apk upgrade \
@@ -13,9 +15,11 @@ RUN sed -i -e 's/v3\.4/v3.5/g' /etc/apk/repositories \
 
 
 RUN apk add --update mosquitto mosquitto-clients && \
-mkdir /work && chown nobody /work 
+mkdir /work 
 
 VOLUME ["/work"]
+
+
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY mosquitto.conf /etc/mosquitto/mosquitto.conf
@@ -23,10 +27,7 @@ COPY mosquitto-base.conf /etc/mosquitto/mosquitto-base.conf
 # Bundle app source
 COPY . /usr/src/app
 
-USER root
 
 EXPOSE 1883
 
 CMD ["ash","./svcmqtt.sh"]
-
-

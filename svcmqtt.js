@@ -67,7 +67,7 @@ function update_config()
 var browser = mdns.createBrowser(mdns.tcp('mqtt'));
 browser.on('ready', function onReady(){
       console.log('browser is ready');
-      restart_server();
+      setTimeout(restart_server,3000);
       browser.discover();
       });
 //service up:  { addresses: [ '192.168.1.231' ],
