@@ -21,6 +21,11 @@
   },
   "homepage": "https://github.com/glennswest/svcmqtt#readme",
   "dependencies": {
-    "mdns-js": "^0.5.3"
+    "child_process": "^1.0.2",
+    "fs": "0.0.1-security",
+    "fs-sync": "^1.0.3",
+    "mdns-js": "^0.5.3",
+    "process": "^0.11.9",
+    "util": "^0.10.3"
   }
 }
