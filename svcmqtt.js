@@ -56,6 +56,7 @@ function update_config()
         options.force = true;
         fssync.copy('/etc/mosquitto/mosquitto-base.conf','/etc/mosquitto/mosquitto.conf',options);
         fs.appendFileSync('/etc/mosquitto/mosquitto.conf','\n# Updated by svcmqtt\n');
+        if (servers.length == 0) return; // Dont do empty connections
         fs.appendFileSync('/etc/mosquitto/mosquitto.conf','connection sitecom\n');
         fs.appendFileSync('/etc/mosquitto/mosquitto.conf',theline);
         fs.appendFileSync('/etc/mosquitto/mosquitto.conf',"start_type automatic");
