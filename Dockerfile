@@ -26,6 +26,7 @@ COPY mosquitto.conf /etc/mosquitto/mosquitto.conf
 COPY mosquitto-base.conf /etc/mosquitto/mosquitto-base.conf
 # Bundle app source
 COPY . /usr/src/app
+RUN npm install
 
 
 EXPOSE 1883
