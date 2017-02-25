@@ -24,6 +24,10 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY mosquitto.conf /etc/mosquitto/mosquitto.conf
 COPY mosquitto-base.conf /etc/mosquitto/mosquitto-base.conf
+RUN chmod 777 /etc/mosquitto/mosquitto.conf
+RUN chmod 777 /etc/mosquitto/mosquitto-base.conf
+RUN ls -l /etc
+RUN ls -l /etc/mosquitto
 # Bundle app source
 COPY . /usr/src/app
 RUN npm install
