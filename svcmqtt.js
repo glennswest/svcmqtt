@@ -6,16 +6,19 @@ var fs = require('fs');
 
 var execFile=require('child_process').execFile;
 myIP = process.env.myIP;
+xIP = myIP.replace(/\./g, "x")
 console.log("My IP is: " + myIP);
+console.log("My xIP is: " + xIP);
 
 servers = [];
 
-var ad = mdns.createAdvertisement(mdns.tcp('mqtt'), 1883,{
-          name:'svcmqtt',
-          txt:{
-            txtvers:'1'
-           }
-         });
+var svcdescription = {};
+svcdescription.name = "svcmqtt";
+svcdescription.txt = [];
+svcdescription.txt.txtvers='1';
+svcdescription.txt.ip = "" + xIP;
+console.log(util.inspect(svcdescription));
+var ad = mdns.createAdvertisement(mdns.tcp('mqtt'), 1883,svcdescription);
 ad.start();
 
 
@@ -107,12 +110,15 @@ function add_server(s)
        }
 }
 browser.on('update', function(service) {
+  console.log(util.inspect(service));
   server = {};
   //console.log("service up: ", service);
+  xIP = service.txt[1].substring(3).replace(/x/g, ".");
+  console.log("xIP=" + xIP);
   ip = service.addresses[0];
   service.type.forEach(function(element){
        if (element.name == 'mqtt'){
-          server.ip = ip;
+          server.ip = xIP;
           add_server(server);
           }
        });
