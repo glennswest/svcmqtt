@@ -8,5 +8,5 @@ ExecStart=/usr/bin/docker start -a svcmqtt.ncc9.com
 ExecStop=/usr/bin/docker stop -t 2 svcmqtt.ncc9.com
 
 [Install]
-WantedBy=local.target
+WantedBy=multi-user.target
 
