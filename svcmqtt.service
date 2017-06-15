@@ -1,6 +1,6 @@
 [Unit]
 Description=svcmqtt container
-After=docker.service
+After=docker-latest.service
 
 [Service]
 Restart=always

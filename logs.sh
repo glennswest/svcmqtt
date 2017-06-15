@@ -1,1 +1,1 @@
-docker logs svcmqtt.site.com
+docker logs svcmqtt.ncc9.com
