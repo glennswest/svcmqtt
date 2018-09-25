@@ -3,9 +3,10 @@ Description=svcmqtt container
 After=docker-latest.service
 
 [Service]
+EnvironmentFile=/etc/svcenv
 Restart=always
-ExecStart=/usr/bin/docker start -a svcmqtt.ncc9.com
-ExecStop=/usr/bin/docker stop -t 2 svcmqtt.ncc9.com
+ExecStart=/usr/bin/docker start -a svcmqtt.${SVCDOMAIN}
+ExecStop=/usr/bin/docker stop -t 2 svcmqtt.${SVCDOMAIN}
 
 [Install]
 WantedBy=multi-user.target
